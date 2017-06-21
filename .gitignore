@@ -1,0 +1,13 @@
+/node_modules
+/dist
+/.tmp
+.vscode
+.sign
+*.rar
+*.wgt
+.sdk_delta.info
+.tproject
+.project
+.settings
+/.sass-cache
+/bower_components
