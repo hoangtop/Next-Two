@@ -75,7 +75,7 @@ body {
     /*#13161E;*/
     background-size: 100% 100%;
     color: #FFFFFF;
-    z-index: 9;
+    z-index: 23;
     transition: opacity 1s ease-in;
     font-size: 80px;
     text-align: center;
@@ -511,7 +511,7 @@ body {
     width: 1920px;
     height: 1080px;
     z-index: 2000000000000;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0);
     transition: visibility 2s ease-out, opacity 3s ease-out, background-color 2s ease-out;
     opacity: 0;
 }
@@ -531,7 +531,7 @@ body {
     width: 180px !important;
     height: 180px !important;
     border-radius: 100%;
-    margin: 250px auto;
+    margin: 400px auto;
     border: 15px solid rgba(255, 255, 255, .2);
     border-left-color: #FFF;
     -webkit-animation: load 1.5s infinite linear;
@@ -1634,4 +1634,24 @@ span.login-input-lable {
 
 .channel-page {
     position: absolute;
+}
+
+.background-layer {
+    position: absolute;
+    /* height: 1080px; */
+    z-index: 20;
+    transition: opacity 4s ease;
+}
+
+.wrapper-container {
+    background-color: transparent;
+    z-index: 21;
+}
+
+.background-layer-fade-in {
+    opacity: 1;
+}
+
+.background-layer-fade-in {
+    opacity: 0;
 }

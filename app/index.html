@@ -27,7 +27,8 @@
         <!--<span class="caph">Viettel TV</span><br/>Giải trí không giới hạn-->
     </div>
 
-    <div ng-style="{'border-color': overview.color,'background-size':bgSize,'background-image': bgGradient1 + ', '+ bgGradient2 + ', url(' + bgImgUrl + ')'}" class="wrapper wrapper-spotlight" ng-include="'views/main.html'"></div>
+    <div ng-style="{'border-color': overview.color,'background-size':bgSize,'background-image': bgGradient1 + ', '+ bgGradient2 + ', url(' + bgImgUrl + ')'}" class="wrapper wrapper-spotlight background-layer"></div>
+    <div class="wrapper wrapper-spotlight wrapper-container" ng-include="'views/main.html'"></div>
     <!--<div ng-style="{'border-color': overview.color}" class="wrapper wrapper-spotlight" ng-include="'views/main.html'"></div>-->
 
     <!-- Video Player : It will be shown when '$scope.currentDepth' become 'DEPTH.PLAYER'. -->
@@ -62,7 +63,7 @@
     </caph-media>
 
     <div class="media-loader" ng-class="{'media-loader-show':isMediaLoaderHidden !== true,'media-loader-hide':isMediaLoaderHidden === true}">
-        <div class="overview">
+        <!--<div class="overview">
             <div class="font-header" ng-bind-html="overview.firstTitle"></div>
             <div class="font-header-small" ng-bind-html="overview.secondTitle"></div>
             <ul class="short-info" ng-show="overview.contentFormat">
@@ -71,7 +72,7 @@
                 <li class="short-info-li short-info-3"><span class="short-info-3">{{overview.country}} | </span></li>
                 <li class="short-info-li short-info-3"><span class="short-info-3">{{overview.genres}}</span></li>
             </ul>
-        </div>
+        </div>-->
         <div class="loader"></div>
     </div>
     <div class="main-loader" ng-class="{'main-loader-show':isMainLoaderShown,'main-loader-hide':!isMainLoaderShown}">
