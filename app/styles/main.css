@@ -218,9 +218,11 @@ body {
     position: absolute;
     overflow: hidden;
     width: 1920px;
-    height: 682px;
+    /*height: 682px;*/
+    height: 1080px;
     /*498px;*/
-    top: 418px;
+    /*top: 418px;*/
+    top: 0px;
     /*582px;*/
     -webkit-transform: translateZ(0);
     -webkit-transform: translate3d(0, 0, 0);
@@ -275,7 +277,24 @@ body {
 
 .list-category {
     position: absolute;
-    top: 145px;
+    /*top: 145px;*/
+    top: 563px;
+    /*top: 84px;*/
+    -webkit-transition: transform .5s ease-out;
+}
+
+
+/*
+.list-category {
+    position: absolute;
+    top: 563px;
+    -webkit-transition: transform .5s ease-out;
+}*/
+
+.list-category.enter {
+    position: absolute;
+    /*top: 145px;*/
+    top: 563px;
     /*top: 84px;*/
     -webkit-transition: transform .5s ease-out;
 }
@@ -969,8 +988,8 @@ body {
     color: #ffffff;
     /* height: 500px; */
     /*background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 5%, transparent), linear-gradient(to top, rgba(0, 0, 0, 1) 5%, transparent), url('https://ast.fimplus.io/images/banner-landscape-21x9-2048x878_1482745918155.jpg');*/
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: left, right bottom, right top;
+    /*background-repeat: no-repeat, no-repeat, no-repeat;*/
+    /*background-position: left, right bottom, right top;*/
     /*background-size: 100% 100%, 60% 0%, 100% 100%;*/
     ;
     width: 100%;
@@ -987,7 +1006,8 @@ body {
 }
 
 .list-wrapper-spotlight {
-    top: 718px;
+    /*top: 718px;*/
+    transform: translate3d(0, 318px, 0);
 }
 
 .bg-img-cover {
@@ -1454,8 +1474,8 @@ button.login-page-button.focused {
 }
 
 .category-page .w3-bar-block .w3-bar-item {
-    padding: 0px 10px 0px 20px;
-    margin: 10px 30px 10px 0px;
+    /*padding: 0px 10px 0px 20px;*/
+    margin: 0px 30px 0px 0px;
 }
 
 .category-page-header {
@@ -1561,15 +1581,18 @@ span.login-input-lable {
     opacity: 1;
 }
 
-.videoMainPlay {
+
+/*.videoMainPlay {
     opacity: 0;
     transition: opacity 2s ease-out;
 }
 
 .videoMainPlay.player-shown {
     opacity: 1;
-    /*opacity: 1;*/
+
 }
+
+*/
 
 .caph-checkbox {
     width: 715px;
@@ -1602,7 +1625,7 @@ span.login-input-lable {
 }
 
 .toast-success {
-    background-color: rgba(81, 163, 81, 0.4);
+    background-color: rgba(81, 163, 81, 0.6);
 }
 
 .toast-warning {
@@ -1611,12 +1634,11 @@ span.login-input-lable {
 }
 
 .toast-error {
-    background-color: rgba(189, 54, 47, 0.39);
-    /*dsd*/
+    background-color: rgba(189, 54, 47, 0.8);
 }
 
 .spotlight-page-fade-out {
-    opacity: 0;
+    opacity: 0 !important;
     /*transition: opacity 3s ease-out;*/
 }
 
@@ -1639,8 +1661,9 @@ span.login-input-lable {
 .background-layer {
     position: absolute;
     /* height: 1080px; */
-    z-index: 20;
-    transition: opacity 4s ease;
+    z-index: 21;
+    transition: opacity 3s ease, background-image 2s ease-in-out;
+    background-color: transparent;
 }
 
 .wrapper-container {
@@ -1653,5 +1676,70 @@ span.login-input-lable {
 }
 
 .background-layer-fade-in {
+    opacity: 0;
+}
+
+.background-mask {
+    background-size: 40%;
+    background-position: 128% 0%;
+    width: 60%;
+    height: 100%;
+    right: 0px;
+}
+
+.spotlight-fade-in {
+    opacity: 1
+}
+
+.spotlight-fade-out {
+    opacity: 0
+}
+
+.spotlight-mask {
+    z-index: 21;
+}
+
+.menu-fade-in {
+    opacity: 1
+}
+
+.menu-fade-out {
+    opacity: 0
+}
+
+.menu-mask {
+    z-index: 21;
+}
+
+.vod-fade-in {
+    opacity: 1
+}
+
+.vod-fade-out {
+    opacity: 0
+}
+
+.vod-mask {
+    z-index: 21;
+}
+
+.font-header {
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.font-header[class*="-remove"] {
+    transition: none;
+}
+
+[animate-on-change] {
+    transition: opacity 2.5s linear;
+    /*-webkit-transition: all 2s ease-in-out;*/
+    opacity: 1;
+}
+
+[animate-on-change].changed {
+    transition: none;
+    -webkit-transition: none;
     opacity: 0;
 }

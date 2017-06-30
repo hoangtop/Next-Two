@@ -219,7 +219,10 @@
                         svod.secondTitle = '';
                     }
                 } else { //not series
-                    if (nameSplit.length === 2) { //have english title
+                    if (nameSplit.length === 3) { //have english title
+                        svod.firstTitle = nameSplit[1].trim() + ' : ' + nameSplit[2].trim();
+                        svod.secondTitle = nameSplit[0].trim();
+                    } else if (nameSplit.length === 2) { //have english title
                         svod.firstTitle = nameSplit[1].trim();;
                         svod.secondTitle = nameSplit[0].trim();;
                     } else {

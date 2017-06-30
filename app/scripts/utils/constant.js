@@ -39,10 +39,12 @@ app.factory('CONSTANT', function() {
             DOWN: 40,
             BACK: 461 //for LG TV
         },
-        SPOTLIGHT_BG_GRADIENT1: 'linear-gradient(to right, rgba(0, 0, 0, 1) 5%, transparent)',
+        SPOTLIGHT_BG_GRADIENT1: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent)',
         SPOTLIGHT_BG_GRADIENT2: 'linear-gradient(to top, rgba(0, 0, 0, 1) 5%, transparent)',
-        SPOTLIGHT_BG_SIZE: '80% 100%, 60% 0%, 100% 100%',
+        // SPOTLIGHT_BG_SIZE: '80% 100%, 60% 0%, 100% 100%',
+        SPOTLIGHT_BG_SIZE: '100%',
         SPOTLIGHT_BG_IMG_URL: "images/spotlight_movie.jpg",
+        SPOTLIGHT_BG_WIDTH: '100%',
 
         CATEGORY_PAGE_BG_GRADIENT1: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent)',
         CATEGORY_PAGE_BG_GRADIENT2: 'linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent)',
@@ -56,8 +58,9 @@ app.factory('CONSTANT', function() {
 
         MENU_BG_GRADIENT1: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent)',
         MENU_BG_GRADIENT2: 'linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent)',
-        MENU_BG_SIZE: '50% 100%, 60% 0%, 100% 100%',
-        MENU_BG_IMG_URL: "images/spotlight_movie.jpg",
+        MENU_BG_SIZE: '100%',
+        MENU_BG_IMG_URL: "images/menu_bg_focused_0.jpg",
+        MENU_BG_WIDTH: '100%',
 
         CATEGORY_BG_GRADIENT1: 'linear-gradient(to right, rgb(0, 0, 0) 40%, transparent)',
         CATEGORY_BG_GRADIENT2: 'linear-gradient(to top, rgb(0, 0, 0) 60%, transparent)',
@@ -67,10 +70,12 @@ app.factory('CONSTANT', function() {
         CATEGORY_VOD_BG_GRADIENT2: 'linear-gradient(to top, rgb(0, 0, 0) 0%, transparent)',
         CATEGORY_VOD_BG_SIZE: '100% 100%, 60% 40%, 60% 100%',
 
-        VOD_DETAIL_BG_GRADIENT1: 'linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent)',
+        VOD_DETAIL_BG_GRADIENT1: 'linear-gradient(to right, rgba(0, 0, 0, 1) 40%, transparent)',
         VOD_DETAIL_BG_GRADIENT2: 'linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent)',
-        VOD_DETAIL_BG_SIZE: '80% 100%, 100% 40%, 60% 100%',
+        // VOD_DETAIL_BG_SIZE: '80% 100%, 100% 40%, 60% 100%',
+        VOD_DETAIL_BG_SIZE: '100%',
         VOD_DETAIL_BG_IMG_URL: "images/spotlight_movie.jpg",
+        VOD_DETAIL_BG_WIDTH: '60%',
 
 
 

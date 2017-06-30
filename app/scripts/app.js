@@ -1,6 +1,7 @@
 'use strict';
 var app = angular.module('vietteltv', [
     'ngSanitize',
+    // 'ngAnimate',
     'caph.ui',
     'ui.router',
     'ngResource',
