@@ -163,10 +163,21 @@
                 des = des.substring(tm.length - 1, des.length - 1);
             }
 
+
+            tm = 'Phụ đề - ';
+            if (des.indexOf(tm) === 0) {
+                des = des.substring(tm.length - 1, des.length - 1);
+            }
+
+            tm = 'Phụ đề- ';
+            if (des.indexOf(tm) === 0) {
+                des = des.substring(tm.length - 1, des.length - 1);
+            }
+
+
+
             svod.description = des.substring(0, 398);
             svod.shortDescription = des.substring(0, 300);
-
-
 
 
             if (vod.program.series) {
