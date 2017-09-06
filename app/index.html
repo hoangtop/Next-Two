@@ -28,20 +28,26 @@
         <!--<span class="caph">Viettel TV</span><br/>Giải trí không giới hạn-->
     </div>
 
-    <div class="wrapper wrapper-spotlight background-layer background-mask spotlight-mask" ng-class="{'spotlight-fade-in':isSpotlightShown,'spotlight-fade-out':!isSpotlightShown}" img-change="bgSpotlightImgUrl">
+    <div class="wrapper wrapper-spotlight background-layer background-mask spotlight-mask" ng-class="{'spotlight-fade-in':isSpotlightShown,'spotlight-fade-out':!isSpotlightShown}"
+        img-change="bgSpotlightImgUrl">
         <img alt="" class="bk-img bk-img-bottom spotlight-img spotlight-img-bottom">
         <img alt="" class="bk-img bk-img-top spotlight-img spotlight-img-top">
-        <div ng-style="{'border-color': overview.color,'background-image': 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent),linear-gradient(to top, rgba(0, 0, 0, 0) 5%, transparent)'}" class="gradient-mask spotlight-gradient-mask"></div>
+        <div ng-style="{'border-color': overview.color,'background-image': 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent),linear-gradient(to top, rgba(0, 0, 0, 0) 5%, transparent)'}"
+            class="gradient-mask spotlight-gradient-mask"></div>
     </div>
-    <div class="wrapper wrapper-spotlight background-layer background-mask menu-mask" ng-class="{'menu-fade-in':isMenuShown,'menu-fade-out':!isMenuShown}" img-change="bgMenuImgUrl">
+    <div class="wrapper wrapper-spotlight background-layer background-mask menu-mask" ng-class="{'menu-fade-in':isMenuShown,'menu-fade-out':!isMenuShown}"
+        img-change="bgMenuImgUrl">
         <img alt="" class="bk-img bk-img-bottom menu-img menu-img-bottom">
         <img alt="" class="bk-img bk-img-top menu-img menu-img-top">
-        <div ng-style="{'border-color': overview.color,'background-image': 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent),linear-gradient(to top, rgba(0, 0, 0, 0) 0%, transparent)'}" class="gradient-mask menu-gradient-mask"></div>
+        <div ng-style="{'border-color': overview.color,'background-image': 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, transparent),linear-gradient(to top, rgba(0, 0, 0, 0) 0%, transparent)'}"
+            class="gradient-mask menu-gradient-mask"></div>
     </div>
-    <div class="wrapper wrapper-spotlight background-layer background-mask vod-mask" ng-class="{'vod-fade-in':isVodShown,'vod-fade-out':!isVodShown,'vod-gradient-mask-slow':isVodMaskSlow}" img-change="bgImgUrl">
+    <div class="wrapper wrapper-spotlight background-layer background-mask vod-mask" ng-class="{'vod-fade-in':isVodShown,'vod-fade-out':!isVodShown,'vod-gradient-mask-slow':isVodMaskSlow}"
+        img-change="bgImgUrl">
         <img alt="" class="bk-img bk-img-bottom vod-img vod-img-bottom">
         <img alt="" class="bk-img bk-img-top vod-img vod-img-top">
-        <div ng-style="{'border-color': overview.color,'background-image': 'linear-gradient(to right, rgba(0, 0, 0, 1) 40%, transparent),linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent)'}" class="gradient-mask vod-gradient-mask"></div>
+        <div ng-style="{'border-color': overview.color,'background-image': 'linear-gradient(to right, rgba(0, 0, 0, 1) 40%, transparent),linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent)'}"
+            class="gradient-mask vod-gradient-mask"></div>
     </div>
 
 
@@ -50,9 +56,15 @@
     <!--<div ng-style="{'border-color': overview.color}" class="wrapper wrapper-spotlight" ng-include="'views/main.html'"></div>-->
 
     <!-- Video Player : It will be shown when '$scope.currentDepth' become 'DEPTH.PLAYER'. -->
-    <caph-media id="player" class="player" ng-class="{'player-shown':isMediaLoaderHidden}" ischannel="isChannel" subtitle="setting.subTitle" on-play="toggleIsPlaying(true)" on-pause="toggleIsPlaying(false)" on-ended="toggleIsPlaying(false)">
-        <video id="videoMainPlay" class="videoMainPlay" autoplay style="width: 100%;height:100%"></video>
-        <caph-media-controls class="controls-bar" ng-class="{'fade-out': !showMediaController}" ng-mouseover="setMediaControllerTimer()">
+    <caph-media id="player" class="player" ng-class="{'player-shown':isPlayerShown}" ischannel="isChannel" subtitle="setting.subTitle"
+        on-play="mediaTogglePlay(true)" on-seeked="mediaSeeked()" on-pause="mediaTogglePlay(false)" on-ended="mediaEnded()">
+        <video id="videoMainPlay" class="videoMainPlay" autoplay></video>
+        <!-- <div class="logo-playback"><img class="logo-img" src="images/logo.png" alt=""></div> -->
+
+
+        <caph-media-controls class="controls-bar" ng-class="{'fade-out': !showMediaController}">
+            <video-track-progress-bar play-pos='{{overview.playPosition}}' end-pos='{{overview.endPosition}}' cur-val='{{overview.passedDuration}}'
+                max-val='{{overview.durationInSeconds}}'></video-track-progress-bar>
             <div class="opacity-panel">
                 <div class="operations">
                     <div focusable="{depth: DEPTH.PLAYER, name: 'btnPlayerRestart'}" class="btn-player" on-selected="controls.restart()">
@@ -79,7 +91,26 @@
             </div>
         </caph-media-controls>
     </caph-media>
+    <div class="quick-channelList-pannel">
+        <ul class="channel-quick-list" ng-class="{'channel-quick-list-fadein':isChannelQuicklistShown}" ng-show="isChannelQuicklistShown && currentOverview.isChannel && currentDepth === DEPTH.PLAYER" ng-hide="!isPlayerShown || !currentOverview.isChannel || currentDepth !== DEPTH.PLAYER">
+            <li ng-repeat="itemChannel in allChannelList">
+                <div class="channel-quick-list-item" focusable="{depth: DEPTH.PLAYER}" id="channel-quick-list-item-{{itemChannel.channelId}}"
+                    on-focused="onQuickChannelFocused($event, listCategory, itemChannel)" on-selected="onQuickChannelSelected($event, listCategory, itemChannel)">
+                    <div class="channel-icon"><img ng-src="{{itemChannel.photoUrl}}" alt=""></div>
+                    <div class="channel-name">
+                        <div class="channel-name-container">
+                            <span class="title program1" ng-show="itemChannel.playingProgram.program1">{{itemChannel.playingProgram.program1}}</span>
+                            <span class="title program2" ng-show="itemChannel.playingProgram.program2">{{itemChannel.playingProgram.program2}}</span>
+                            <span class="duration">{{itemChannel.playingProgram.time}}</span>
+                            <track-progress-bar cur-val='{{itemChannel.playingProgram.passedDuration}}' max-val='{{itemChannel.playingProgram.duration}}'></track-progress-bar>
+                        </div>
+                    </div>
+                </div>
+            </li>
 
+
+        </ul>
+    </div>
     <div class="media-loader" ng-class="{'media-loader-show':isMediaLoaderHidden !== true,'media-loader-hide':isMediaLoaderHidden === true}">
         <!--<div class="overview">
             <div class="font-header" ng-bind-html="overview.firstTitle"></div>
@@ -107,7 +138,7 @@
         <!--<caph-dialog-buttons ng-if="!dialog.isConfirm" button-type="alert" on-select-button="dialog.onSelectButton($buttonIndex, $event)"></caph-dialog-buttons>-->
     </caph-dialog>
     <caph-dialog focus-option="warning.focusOption" center="true" show="warning.show" style="width:800px;">
-        <caph-dialog-title>{{dialog.title}}</caph-dialog-title>warning
+        <caph-dialog-title>{{dialog.title}}</caph-dialog-title>
         <caph-dialog-content>
             <div class="caph-dialog-message" ng-bind-html="warning.message"></div>
         </caph-dialog-content>
@@ -131,15 +162,17 @@
                 <div class="smarttv-keyboard-holder"></div>
                 <div class="login-form-wrapper">
                     <div class="login-form">
-                        <div class="login-row login-account-row">
+                        <div class="login-row login-account-row" focusable="{depth: DEPTH.LOGIN}" onmousedown="usernameInputClick()">
                             <span class="login-input-lable password-label">Số điện thoại:</span>
 
-                            <input id="username" readonly type="text" size="40" class="login-input login-account-input" title="Bước 1: Nhập Số điện thoại (vd 0988666888)" ng-model="login.username">
+                            <input id="username" readonly type="text" size="40" class="login-input login-account-input" title="Bước 1: Nhập Số điện thoại (vd 098xxxxxx)"
+                                ng-model="login.username">
                             <div class="smart-tv-keyboard"></div>
                         </div>
-                        <div class="login-row login-pass-row">
+                        <div class="login-row login-pass-row" focusable="{depth: DEPTH.LOGIN}" onmousedown="passwordInputClick()">
                             <span class="login-input-lable password-label">Mật khẩu     :</span>
-                            <input id="password" readonly type="password" size="40" class="login-input login-password-input" title="Bước 2: Nhập Mật khẩu" ng-model="login.password">
+                            <input id="password" readonly type="password" size="40" class="login-input login-password-input" title="Bước 2: Nhập Mật khẩu"
+                                ng-model="login.password">
                             <div class="smart-tv-keyboard"></div>
                         </div>
 
@@ -158,7 +191,8 @@
                     </div>
                 </div>
             </div>
-            <div class="login-page-guide">(* Vui lòng tải App ViettelTV cho điện thoại tại Google Play Store hoặc Apple Store để đăng ký tài khoản. Sau đó sử dụng tài khoản này để đăng nhập trên SmartTV)</div>
+            <div class="login-page-guide">(* Vui lòng tải App ViettelTV cho điện thoại tại Google Play Store hoặc Apple Store để đăng ký tài khoản. Sau
+                đó sử dụng tài khoản này để đăng nhập trên SmartTV)</div>
 
         </div>
     </div>

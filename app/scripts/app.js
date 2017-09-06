@@ -28,13 +28,14 @@ app.value('SETTINGS', {
 
 app.run(['SETTINGS', 'localStorageService', 'Auth', '$rootScope',
 
-
     function(SETTINGS, localStorageService, Auth, $rootScope) {
         // localStorageService.clearAll();
+        console.log("localStorageService token chek ......", localStorageService.get('token'));
+
         Auth.authorize(true, function() {
             console.log("authorize finish ......");
             if (localStorageService.get('token')) { //already login
-                var token = localStorageService.get('token')
+                var token = localStorageService.get('token');
                 console.log("access_token 12343453", localStorageService.get('token'));
                 SETTINGS.access_token = token.access_token;
                 SETTINGS.token_secret = token.token_secret;
@@ -55,6 +56,7 @@ app.run(['SETTINGS', 'localStorageService', 'Auth', '$rootScope',
         //get fingerprint for the device
         if (!localStorageService.get('deviceUdid')) {
             new Fingerprint2().get(function(result, components) {
+                console.log(" localStorageService localStorageService token chek ......", localStorageService.get('token'));
                 localStorageService.set('deviceUdid', result);
                 console.log(result); //a hash, representing your device fingerprint
                 console.log(components); // an array of FP components
@@ -89,7 +91,7 @@ app.config(function($httpProvider) {
     });
 
     $httpProvider.interceptors.push('authInterceptor');
-    $httpProvider.interceptors.push('tokenExpiredInterceptor');
+    // $httpProvider.interceptors.push('tokenExpiredInterceptor');
 });
 
 
@@ -152,3 +154,19 @@ $(document).ready(function() {
     // $("#playerPanel").hide();
 
 });
+
+String.prototype.toHHMMSS = function() {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours < 10) { hours = "0" + hours; }
+    if (minutes < 10) { minutes = "0" + minutes; }
+    if (seconds < 10) { seconds = "0" + seconds; }
+    if (hours === "00") {
+        return minutes + ':' + seconds
+    } else {
+        return hours + ':' + minutes + ':' + seconds;
+    }
+}
