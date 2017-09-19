@@ -170,21 +170,26 @@
                         } else if (value.value === '&&previous') {
                             value.value = '&&previous';
                             value.text = 'Quay lại';
+                            button.attr('id', 'backToUsername');
                         } else if (kbIndex === noKeyBoard - 1 && value.value === '&&next') {
                             value.value = '&&login';
-                            value.text = 'Đăng nhập'
+                            value.text = 'Đăng nhập';
                         } else if (kbIndex === noKeyBoard - 1 && value.value === '&&login') {
                             value.value = '&&next';
-                            value.text = 'Tiếp theo'
+                            value.text = 'Tiếp theo';
+                            button.attr('id', 'nextToPass');
                         } else if (kbIndex === noKeyBoard - 1 && (value.value === '&&previous' || value.value === '&&close')) {
                             value.value = '&&previous';
-                            value.text = 'Quay lại'
+                            value.text = 'Quay lại';
+                            button.attr('id', 'backToUsername');
                         } else if (kbIndex <= noKeyBoard - 2 && value.value === '&&login') {
                             value.value = '&&next';
-                            value.text = 'Tiếp theo'
+                            value.text = 'Tiếp theo';
+                            button.attr('id', 'nextToPass');
                         } else if (kbIndex <= noKeyBoard - 1 && value.value === '&&next') {
                             value.value = '&&next';
-                            value.text = 'Tiếp theo'
+                            value.text = 'Tiếp theo';
+                            button.attr('id', 'nextToPass');
                         }
 
                         button.text(value.text);
@@ -285,15 +290,32 @@
                         options.onEnter && options.onEnter(inputElement.val()); // jshint ignore:line
                         // that.show();
                         // that.css('opacity', 1);
+
                         that.parent().removeClass('focused');
+                          console.log('smartTvKeyboards[kbIndex1 ]',smartTvKeyboards[kbIndex]);
+                          console.log('smartTvKeyboards[kbIndex1 + 1]',smartTvKeyboards[kbIndex + 1]);
+                          console.log('that1',that);
+                        $(smartTvKeyboards[kbIndex]).parent().attr('focused',false);
+                        $(smartTvKeyboards[kbIndex + 1]).parent().attr('focused',true);
+                        that.parent().find('.smart-tv-keyboard')[0].remove();
                         destroy();
 
+                      
+                       
                         smartTvKeyboards[kbIndex + 1].click(); //show keyboard for next field
                         break;
                     case '&&previous':
 
                         options.onEnter && options.onEnter(inputElement.val()); // jshint ignore:line
                         that.parent().removeClass('focused');
+
+                        
+                        console.log('smartTvKeyboards[kbIndex2 - 1]',smartTvKeyboards[kbIndex - 1]);
+                        console.log('smartTvKeyboards[kbIndex2]',smartTvKeyboards[kbIndex]);
+                        console.log('that2',that);
+                        $(smartTvKeyboards[kbIndex]).parent().attr('focused',false);
+                        $(smartTvKeyboards[kbIndex - 1]).parent().attr('focused',true);
+                        that.parent().find('.smart-tv-keyboard')[0].remove();
                         destroy();
 
                         smartTvKeyboards[kbIndex - 1].click(); //show keyboard for previous field
@@ -474,6 +496,7 @@
             function destroy() {
                 backdropElement && backdropElement.remove(); // jshint ignore:line
                 keyboardElement && keyboardElement.remove(); // jshint ignore:line
+                console.log('destroy::::',keyboardElement);
                 keyboardElement = null;
                 removeEventListener();
 

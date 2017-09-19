@@ -1,5 +1,5 @@
 //developl
-$('document').ready(function() {
+$('document').ready(function () {
     $('.login-input').smartTvKeyboard({
         title: null, // Window title
         defLang: null, // Default language (layout key name)
@@ -26,3 +26,21 @@ $('document').ready(function() {
 
 
 });
+
+function usernameInputClick() {
+    console.log('usernameInputClick:');
+    if ($('.login-account-row').attr('focused') !== "true") {
+        console.log('usernameInputClick vao:');
+        $('#backToUsername').click();
+    }
+
+}
+
+function passwordInputClick() {
+    console.log('passwordInputClick:');
+    if ($('.login-pass-row').attr('focused') !== "true") {
+        console.log('passwordInputClick vao:');
+        $('#nextToPass').click();
+    }
+
+}

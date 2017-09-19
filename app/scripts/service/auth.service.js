@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     app.factory('Auth', Auth);
@@ -16,8 +16,11 @@
         return service;
 
         function authorize(force, callback) {
+            // alert(force);
+            console.log('auth.authorize ..........................');
             var cb = callback || angular.noop;
             var authReturn = Principal.identity(force).then(authThen);
+            // console.log('auth.authorize ..........................');
 
             return authReturn;
 
@@ -33,14 +36,14 @@
 
             AuthServerProvider.login(credentials)
                 .then(loginThen)
-                .catch(function(err) {
+                .catch(function (err) {
                     this.logout();
                     deferred.reject(err);
                     return cb(err);
                 }.bind(this));
 
             function loginThen(data) {
-                Principal.identity(true).then(function(account) {
+                Principal.identity(true).then(function (account) {
                     deferred.resolve(data);
                 });
                 return cb();
@@ -56,8 +59,8 @@
 
             AuthServerProvider.renewToken()
                 .then(renewTokenThen)
-                .catch(function(err) {
-                    this.logout();
+                .catch(function (err) {
+                    // this.logout();
                     deferred.reject(err);
                     return cb(err);
                 }.bind(this));
@@ -73,6 +76,7 @@
         function logout() {
             AuthServerProvider.logout();
             Principal.authenticate(null);
+            localStorageService.set('token', null);
         }
 
     }
